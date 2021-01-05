@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="88dp"
+    android:id="@+id/element_list"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFFDD0"
+    android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/img_id"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_weight="0.6"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FFFDD0">
+
+        <TextView
+            android:layout_weight="1"
+            android:gravity="center|left"
+            android:textStyle="bold"
+            android:id="@+id/name_req"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Name: TEST"
+            android:textColor="@color/black"
+            android:textAppearance="?android:textAppearanceMedium"/>
+
+        <TextView
+            android:gravity="center|left"
+            android:layout_weight="1"
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Temp_address"
+            android:textColor="@color/black"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textSize="12sp"
+            android:textStyle="bold"
+        />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_weight="0.4"
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/round_access_time_black_24"
+                />
+            <TextView
+                android:paddingLeft="5dp"
+                android:layout_weight="9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/timings"
+                android:text="sample"
+                android:textColor="@color/black"
+                android:gravity="center|left"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/image_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/play_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/baseline_place_black_18" />
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+

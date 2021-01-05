@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.android.myapplication"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -51,4 +51,6 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:1.0.0-alpha04"
+
+    implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
 }

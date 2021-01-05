@@ -1,8 +1,17 @@
 package com.example.android.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavAction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,5 +19,49 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //setting up the appbar:
+//        NavController navController = Navigation.findNavController(this, R.id.appbar);
+//        NavigationUI.setupActionBarWithNavController(this, navController);
+
+        //Getting object of viewpager to connect it to page adapter
+        ViewPager2 viewPager = (ViewPager2) findViewById(R.id.viewpager);
+
+        //Creating object of page adapter and connecting it with the viewpager
+        SimplePageAdapter pageAdapter = new SimplePageAdapter(MainActivity.this);
+        viewPager.setAdapter(pageAdapter);
+
+        //Creating the Tablayout and attaching it to the viewpager
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablay);
+
+        // To connect Tablayout with the view, we need to use the TabLayoutMediator
+        TabLayoutMediator.TabConfigurationStrategy tabConfigurationStrategy = new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position)
+            {
+                switch (position)
+                {
+                    case 0:
+                    {
+                        tab.setText("Places");
+                        break;
+                    }
+                    case 1:
+                    {
+                        tab.setText("Food");
+                        break;
+                    }
+                    case 2:
+                    {
+                        tab.setText("Fun");
+                        break;
+                    }
+                }
+            }
+        };
+
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager, tabConfigurationStrategy);
+        tabLayoutMediator.attach();
+
     }
 }
