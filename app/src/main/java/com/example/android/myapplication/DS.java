@@ -4,14 +4,15 @@ package com.example.android.myapplication;
 public class DS
 {
     private int image_id;
-    private String place_name, location, timing, detail;
+    private String place_name, location, timing, detail, geo_location;
 
-    public DS(int image_id,String name, String location, String timing, String detail){
+    public DS(int image_id, String name, String location, String timing, String detail, String geo_location){
         this.place_name = name;
         this.image_id = image_id;
         this.location = location;
         this.timing = timing;
         this.detail = detail;
+        this.geo_location= geo_location;
     }
 
     public int get_image_id()
@@ -37,6 +38,11 @@ public class DS
     public String get_detail()
     {
         return detail;
+    }
+
+    public String get_geo_location()
+    {
+        return geo_location;
     }
 
     @Override

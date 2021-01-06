@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:id="@+id/detail_frame"
+    >
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/detail_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
+
+    <ImageView
+        android:id="@+id/detail_image"
         android:layout_weight="0.5"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"/>
 
     <TextView
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="A Little Insight"
@@ -19,19 +36,28 @@
         android:textSize="30sp"
         android:textColor="@color/black"
         android:gravity="center|left"
-        android:layout_weight="0.1"/>
+        android:layout_weight="0.1"
+        android:background="#C8E6C9"/>
 
     <TextView
+        android:padding="16dp"
         android:id="@+id/place_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3"/>
+        android:layout_weight="0.3"
+        android:scrollbars="vertical"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:background="#C8E6C9"
+        />
 
     <ImageView
+        android:padding="18dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
-        android:id="@+id/play_icon"
+        android:id="@+id/location_icon"
         android:layout_gravity="center"
-        android:src="@drawable/baseline_place_black_18"/>
+        android:src="@drawable/baseline_place_black_36"
+        android:background="#C8E6C9"/>
 </LinearLayout>

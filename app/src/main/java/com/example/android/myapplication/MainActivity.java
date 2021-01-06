@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -20,9 +21,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //setting up the appbar:
-//        NavController navController = Navigation.findNavController(this, R.id.appbar);
+//        //setting up the appbar:
+//        NavController navController = Navigation.findNavController(this, R.id.my_toolbar);
 //        NavigationUI.setupActionBarWithNavController(this, navController);
+        androidx.appcompat.widget.Toolbar myToolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         //Getting object of viewpager to connect it to page adapter
         ViewPager2 viewPager = (ViewPager2) findViewById(R.id.viewpager);
@@ -59,9 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager, tabConfigurationStrategy);
         tabLayoutMediator.attach();
-
     }
 }

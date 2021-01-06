@@ -1,15 +1,22 @@
 package com.example.android.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,10 +82,26 @@ public class Places extends Fragment {
                 "Built in 1321 by the founder of the Tughlaq Dynasty, Ghiyas-ud-din-Tughlaq, the Tughlaqabad Fort is a massive stone structure that has walls that are around 10 to 15 metres high. This huge fort was abandoned in the year 1327. The fort initially had 52 gates, 13 out of which still remain.",
                 "Situated in the heart of the city, India Gate is one of the most popular and well known monuments in India. It was designed by Edwin Lutyens. With lush green and well-manicured lawns around, the foundation of this historical structure was laid in 1920.",
                 "It was unveiled in 1933 and dedicated to all the Indian soldiers of the British Army that were killed in World War I."};
+        //geo:47.6,-122.3?z=11
+        String[] geolocation = {"geo:28.5933, 77.2507?z=20",
+                                "geo:28.5931, 77.2197?z=20",
+                                "geo:28.5245, 77.1855?z=20",
+                                "geo:28.5893, 77.2106?z=20",
+                                "geo:28.5922, 77.2462?z=20",
+                                "geo:28.6562, 77.2410?z=20",
+                                "geo:28.5242, 77.1857?z=20",
+                                "geo:28.6507, 77.2334?z=20",
+                                "geo:28.6558, 77.2423?z=20",
+                                "geo:28.52417,77.18583?z=20",
+                                "geo:28.6096, 77.2437?z=20",
+                                "geo:28.5143, 77.2601?z=20",
+                                "geo:28.6271, 77.2166?z=20",
+                                "geo:28.6129, 77.2295?z=120"};
+
 
         //filling up the obj:
         for(int i=0; i<place_name.length; i++) {
-            obj.add(new DS(image[i], place_name[i], location[i], timing[i], detail[i]));
+            obj.add(new DS(image[i], place_name[i], location[i], timing[i], detail[i], geolocation[i]));
         }
         //Creating wordAdapter
         WordAdapter adapter = new WordAdapter(getActivity(), obj);
@@ -86,5 +109,28 @@ public class Places extends Fragment {
         ListView listView = view.findViewById(R.id.list_xml);
         //setting adapter with ListView
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                DS temp = obj.get(position);
+//                if(position == 1)
+//                {
+                    String[] value = {String.valueOf(temp.get_image_id()), temp.get_detail(), temp.get_geo_location(),temp.getplace_name(),};
+//                    Fragment fragment = new detail_frag();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArray("key", value);
+
+//                    FragmentManager fragmentManager = getFragmentManager();
+//                    fragmentManager.beginTransaction().replace().commit();
+
+                    Intent intent = new Intent(getContext(), Detail.class);
+                    intent.putExtra(Detail.KEY_EXTRA, bundle);
+                    startActivity(intent);
+//                }
+            }
+        });
     }
 }
