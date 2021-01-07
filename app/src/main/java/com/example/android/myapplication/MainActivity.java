@@ -1,15 +1,10 @@
 package com.example.android.myapplication;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavAction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager2.widget.ViewPager2;
-
-import android.os.Bundle;
-import android.widget.Toolbar;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -21,9 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        //setting up the appbar:
-//        NavController navController = Navigation.findNavController(this, R.id.my_toolbar);
-//        NavigationUI.setupActionBarWithNavController(this, navController);
+        //setting up the appbar:
         androidx.appcompat.widget.Toolbar myToolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 

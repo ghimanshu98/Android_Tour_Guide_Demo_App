@@ -2,21 +2,18 @@ package com.example.android.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import static androidx.core.content.ContextCompat.startActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,13 +37,28 @@ public class Places extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //Creating object of ArrayList to hold data inside it:
-        ArrayList<DS> obj = new ArrayList<DS>();
+        ArrayList<DS> obj = new ArrayList<>();
 
         int[] image = {R.drawable.humayuns_tomb, R.drawable.lodi_gardens, R.drawable.qutubminar,
                 R.drawable.safdurjung_tomb, R.drawable.isa_khan_tomb, R.drawable.red_fort,
                 R.drawable.alai_darwaza, R.drawable.jama_maszid, R.drawable.diwan_i_am,
                 R.drawable.tomb_of_imam_zamin, R.drawable.purana_quila, R.drawable.tughlaqabad_fort,
                 R.drawable.jantar_mantar, R.drawable.india_gate};
+
+        int[][] detail_images = {{R.drawable.humayuns_tomb, R.drawable.humayuns_tomb_1,R.drawable.humayuns_tomb_2,R.drawable.humayuns_tomb_3,R.drawable.humayuns_tomb_4},
+                {R.drawable.lodi_gardens,R.drawable.lodi_gardens_1,R.drawable.lodi_gardens_2, R.drawable.lodi_gardens_3, R.drawable.lodi_gardens_4},
+                {R.drawable.qutubminar, R.drawable.qutubminar_1, R.drawable.qutubminar_2, R.drawable.qutubminar_3, R.drawable.qutubminar_4},
+                {R.drawable.safdurjung_tomb,R.drawable.safdurjung_tomb_1,R.drawable.safdurjung_tomb_2,R.drawable.safdurjung_tomb_3,R.drawable.safdurjung_tomb_4},
+                {R.drawable.isa_khan_tomb, R.drawable.isa_khan_tomb_1,R.drawable.isa_khan_tomb_2,R.drawable.isa_khan_tomb_3,R.drawable.isa_khan_tomb_4},
+                {R.drawable.red_fort,R.drawable.red_fort_1,R.drawable.red_fort_2,R.drawable.red_fort_3,R.drawable.red_fort_4},
+                {R.drawable.alai_darwaza, R.drawable.alai_darwazaa_1, R.drawable.alai_darwazaa_2, R.drawable.alai_darwazaa_3, R.drawable.alai_darwazaa_4},
+                {R.drawable.jama_maszid, R.drawable.jama_maszid_1, R.drawable.jama_maszid_2, R.drawable.jama_maszid_3, R.drawable.jama_maszid_4},
+                {R.drawable.diwan_i_am, R.drawable.diwan_i_am_1,R.drawable.diwan_i_am_2,R.drawable.diwan_i_am_3,R.drawable.diwan_i_am_4},
+                {R.drawable.tomb_of_imam_zamin, R.drawable.tomb_of_imam_zamin_1, R.drawable.tomb_of_imam_zamin_2, R.drawable.tomb_of_imam_zamin_3, R.drawable.tomb_of_imam_zamin_4},
+                {R.drawable.purana_quila, R.drawable.purana_quila_1, R.drawable.purana_quila_2, R.drawable.purana_quila_3, R.drawable.purana_quila_4},
+                {R.drawable.tughlaqabad_fort, R.drawable.tughlaqabad_fort_1, R.drawable.tughlaqabad_fort_2, R.drawable.tughlaqabad_fort_3, R.drawable.tughlaqabad_fort_4},
+                {R.drawable.jantar_mantar, R.drawable.jantar_mantar_1, R.drawable.jantar_mantar_2, R.drawable.jantar_mantar_3, R.drawable.jantar_mantar_4},
+                {R.drawable.india_gate, R.drawable.india_gate_1,R.drawable.india_gate_2,R.drawable.india_gate_3,R.drawable.india_gate_4}};
 
         String[] place_name = {"Humayun’s Tomb", "Lodi Gardens", "Qutub Minar",
                 "Safdarjung’s Tomb", "Isa Khan’s Tomb", "Red Fort (Lal Qila)",
@@ -100,9 +112,11 @@ public class Places extends Fragment {
 
 
         //filling up the obj:
-        for(int i=0; i<place_name.length; i++) {
-            obj.add(new DS(image[i], place_name[i], location[i], timing[i], detail[i], geolocation[i]));
+        for(int i=0; i<place_name.length; i++)
+        {
+            obj.add(new DS(image[i], place_name[i], location[i], timing[i], detail[i], geolocation[i], detail_images[i]));
         }
+
         //Creating wordAdapter
         WordAdapter adapter = new WordAdapter(getActivity(), obj);
 
@@ -110,26 +124,28 @@ public class Places extends Fragment {
         //setting adapter with ListView
         listView.setAdapter(adapter);
 
+        //setting click listener on ListView element to go to the detail page of the particular.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 DS temp = obj.get(position);
-//                if(position == 1)
-//                {
-                    String[] value = {String.valueOf(temp.get_image_id()), temp.get_detail(), temp.get_geo_location(),temp.getplace_name(),};
-//                    Fragment fragment = new detail_frag();
 
-                    Bundle bundle = new Bundle();
-                    bundle.putStringArray("key", value);
+                //String array to pass in the bundle
+                String[] value = {String.valueOf(temp.get_image_id()), temp.get_detail(), temp.get_geo_location(),temp.getplace_name()};
 
-//                    FragmentManager fragmentManager = getFragmentManager();
-//                    fragmentManager.beginTransaction().replace().commit();
+                //bundle object to pass  extra the data with the intent
+                Bundle bundle = new Bundle();
+                //populating the bundle object
+                bundle.putStringArray("key", value);
 
-                    Intent intent = new Intent(getContext(), Detail.class);
-                    intent.putExtra(Detail.KEY_EXTRA, bundle);
-                    startActivity(intent);
-//                }
+                //creating intent to Detail Activity
+                Intent intent = new Intent(getContext(), Detail.class);
+                //putting extra data int the Intent
+                intent.putExtra(Detail.KEY_EXTRA, bundle);
+                intent.putExtra(Detail.KEY_EXTRA_2, temp.getDetail_images());
+                //starting intent
+                startActivity(intent);
             }
         });
     }

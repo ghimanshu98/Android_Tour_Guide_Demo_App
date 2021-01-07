@@ -19,12 +19,27 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         />
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/detail_image"
         android:layout_weight="0.5"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"/>-->
+    <HorizontalScrollView
+        android:layout_weight="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/horizontal_scroll"
+        >
+        <LinearLayout
+            android:id="@+id/linear_image"
+            android:layout_width="400dp"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </HorizontalScrollView>
 
     <TextView
         android:padding="16dp"
@@ -32,7 +47,7 @@
         android:layout_height="0dp"
         android:text="A Little Insight"
         android:textStyle="bold"
-        android:textAppearance="?android:textAppearanceMedium"
+        android:textAppearance="?android:titleTextAppearance"
         android:textSize="30sp"
         android:textColor="@color/black"
         android:gravity="center|left"

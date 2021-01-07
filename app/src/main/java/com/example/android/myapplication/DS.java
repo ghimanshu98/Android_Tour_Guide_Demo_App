@@ -5,14 +5,16 @@ public class DS
 {
     private int image_id;
     private String place_name, location, timing, detail, geo_location;
+    private int[] detail_images;
 
-    public DS(int image_id, String name, String location, String timing, String detail, String geo_location){
+    public DS(int image_id, String name, String location, String timing, String detail, String geo_location, int[] detail_images){
         this.place_name = name;
         this.image_id = image_id;
         this.location = location;
         this.timing = timing;
         this.detail = detail;
         this.geo_location= geo_location;
+        this.detail_images = detail_images;
     }
 
     public int get_image_id()
@@ -43,6 +45,11 @@ public class DS
     public String get_geo_location()
     {
         return geo_location;
+    }
+
+    public int[] getDetail_images()
+    {
+        return detail_images;
     }
 
     @Override
